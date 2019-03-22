@@ -19,6 +19,31 @@ let basicFunction = {
 			hour: hour
 		}
 		return dateObj;
+	},
+
+	findMonth: function(fulldate) {
+		let month = fulldate.split(" ")[1];
+		const monthNames = ["January", "February", "March", "April", "May", "June",
+		  "July", "August", "September", "October", "November", "December"
+		];
+
+		for(let i = 0; i < monthNames.length; i++) {
+			if(month == monthNames[i]) {
+				return month;
+				break;
+			}
+		}
+	},
+
+	deleteAllCookies: function() {
+	    let cookies = document.cookie.split(";");
+
+	    for (let i = 0; i < cookies.length; i++) {
+	        let cookie = cookies[i];
+	        let eqPos = cookie.indexOf("=");
+	        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+	        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+	    }
 	}
 }
 

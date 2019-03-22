@@ -52,10 +52,11 @@ export default {
 
   methods: {
       fetchUser() {
-        let email = window.location.href.split("?email=")[1].replace(/%40/g, "@");
+        let id = window.location.href.split("?id=")[1];
         this.axios.get(address + ":3000/get-user", headers).then((response) => {
-          let query = `query getSingleUser($userEmail: String!) {
-            user(email: $userEmail) {
+          let query = `query getSingleUser($userId: String!) {
+            user(_id: $userId) {
+              _id
               fullname
               email
               role
@@ -63,7 +64,7 @@ export default {
             }
           }`;
           let variable = {
-            userEmail: email
+            userId: id
           };
           graphqlFunction.graphqlFetchOne(query, variable, (result) => {
             this.input.email = result.user.email;

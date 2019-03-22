@@ -12,8 +12,8 @@
         sui-table-cell {{user.email}}
         sui-table-cell {{user.role}}
         sui-table-cell
-          router-link( is="sui-button" basic color="green" :to="'/update-user?email=' + user.email") Update
-          router-link( is="sui-button" basic color="red" :to="'/delete-user?email=' + user.email") Delete
+          router-link( is="sui-button" basic color="green" :to="'/update-user?id=' + user._id") Update
+          router-link( is="sui-button" basic color="red" :to="'/delete-user?id=' + user._id") Delete
     sui-table-footer
       sui-table-row
         sui-table-header-cell( colspan="4")
@@ -43,6 +43,7 @@ export default {
         this.axios.get(address + ":3000/get-user", headers).then((response) => {
           let query = `query getAllUser {
             users {
+              _id
               fullname
               email
               role

@@ -14,6 +14,8 @@ sui-menu(attached="top")
 
 <script>
 import graphqlFunction from '../graphqlFunction';
+import basicFunction from '../basicFunction';
+import address from '../address';
 
 export default {
     data(){
@@ -89,11 +91,13 @@ export default {
         },
 
         logout() {
-          alert("Successfully Logged Out");
-          location.reload();
-          document.cookie = "";
-          this.$session.destroy();
-          this.$router.push('/');
+          this.axios.get(address + ":3000/logout").then((response) => {
+            alert("Successfully Logged Out");
+            basicFunction.deleteAllCookies();
+            this.$session.destroy();
+            this.$router.push('/');
+            location.reload();
+          });
         }
     }
 }

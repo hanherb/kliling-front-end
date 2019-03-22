@@ -1,7 +1,6 @@
 <template lang="pug">
   div
     div( id="map")
-    sui-button( type="button" v-on:click="addDirection()") Direction
 </template>
 
 <script>
@@ -88,21 +87,6 @@ export default {
         utils.createRoute(json.routes[0].geometry);
       });
       var utils = {
-        getNearest(coord) {
-          const coord4326 = coord;
-          return new Promise(((resolve, reject) => {
-            // make sure the coord is on street
-            fetch(url_osrm_nearest + coord4326.join()).then(response => (
-              // Convert to JSON
-              response.json()
-                    )
-                                                            ),
-            ).then((json) => ( {
-              if (json.code === 'Ok') resolve(json.waypoints[0].location);
-              else reject();
-            });
-          }));
-        },
         createFeature(coord) {
           const feature = new ol.Feature({
             type: 'place',

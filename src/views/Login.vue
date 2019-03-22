@@ -39,6 +39,7 @@ export default {
                 this.$session.set('user', response.data.response);
                 document.cookie = "token=" + response.data.token;
                 document.cookie = "user_session=" + this.$session.get('user')._id;
+                document.cookie = "user_authority=" + this.$session.get('user').authority;
                 this.$router.push('/');
               }
               else {
